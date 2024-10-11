@@ -66,8 +66,9 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
       bestMove = Math.max(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
       game.undo();
       alpha = Math.max(alpha, bestMove);
-      if (beta <= alpha) {
-        return bestMove;
+      if (beta <= bestMove) {
+        //return bestMove;
+        break
       }
     }
     return bestMove;
@@ -78,8 +79,9 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
       bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
       game.undo();
       beta = Math.min(beta, bestMove);
-      if (beta <= alpha) {
-        return bestMove;
+      if (bestMove <= alpha) {
+        //return bestMove;
+        break
       }
     }
     return bestMove;
