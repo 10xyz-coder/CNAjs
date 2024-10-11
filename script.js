@@ -218,23 +218,23 @@ var getPieceValue = function(piece, x, y) {
 
       if (piece.color === 'w') {
         if (boardPiece(y + 1, x + 1, b).type === 'p' && boardPiece(y + 1, x + 1, b).color === 'w') {
-          extraValue += 0.5;
+          extraValue += 1.0;
         }
         if (boardPiece(y - 1, x + 1, b).type === 'p' && boardPiece(y - 1, x + 1, b).color === 'w') {
-          extraValue += 0.5;
+          extraValue += 1.0;
         }
         if (boardPiece(y + 1, x, b).type === 'p' && boardPiece(y + 1, x, b).color === 'w') {
-          extraValue -= 2.0;
+          extraValue -= 5.0;
         }
       } else {
         if (boardPiece(y + 1, x + 1, b).type === 'p' && boardPiece(y + 1, x + 1, b).color !== 'w') {
-          extraValue += 0.5;
+          extraValue += 1.0;
         }
         if (boardPiece(y - 1, x + 1, b).type === 'p' && boardPiece(y - 1, x + 1, b).color !== 'w') {
-          extraValue += 0.5;
+          extraValue += 1.0;
         }
         if (boardPiece(y + 1, x, b).type === 'p' && boardPiece(y + 1, x, b).color !== 'w') {
-          extraValue -= 2.0;
+          extraValue -= 5.0;
         }
       }
 
