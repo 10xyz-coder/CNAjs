@@ -34,6 +34,15 @@ var minimaxRoot = function(depth, game, isMaximisingPlayer) {
 
   // TODO: Implement some kind of capture detection system
   //sortMoves(newGameMoves);
+  for ( let move of newGameMoves ) {
+    move.importance = 0
+      + move.flags.includes( 'p' ) ? 16 : 0
+      + move.flags.includes( 'e' ) ? 20 : 0
+      + move.flags.includes( 'b' ) ? 12 : 0
+      + move.flags.includes( 'c' ) ? 8 : 0;   
+  }
+
+  newGameMoves.sort( ( a, b ) => b.importance - a.importance );
 
   var bestMove = -9999;
   var bestMoveFound;
