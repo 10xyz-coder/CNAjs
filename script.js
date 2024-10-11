@@ -30,7 +30,8 @@ function boardPiece(y, x, board) {
 
 var minimaxRoot = function(depth, game, isMaximisingPlayer) {
 
-  var newGameMoves = game.ugly_moves({verbose: true});
+  //var newGameMoves = game.ugly_moves({verbose: true});
+  var newGameMoves = game.moves({verbose: true});
 
   // TODO: Implement some kind of capture detection system
   //sortMoves(newGameMoves);
@@ -66,7 +67,8 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
     return -evaluateBoard(game.board());
   }
 
-  var newGameMoves = game.ugly_moves();
+  //var newGameMoves = game.ugly_moves({verbose: true});
+  var newGameMoves = game.moves({verbose: true});
 
   if (isMaximisingPlayer) {
     var bestMove = -9999;
