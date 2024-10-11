@@ -36,11 +36,11 @@ var minimaxRoot = function(depth, game, isMaximisingPlayer) {
   // TODO: Implement some kind of capture detection system
   //sortMoves(newGameMoves);
   for ( let move of newGameMoves ) {
-    move.importance = 0
-      + move.flags = 16 ? 16 : 0
-      + move.flags = 8 ? 20 : 0
-      + move.flags = 4 ? 12 : 0
-      + move.flags = 2 ? 8 : 0;   
+    move.importance = 0;
+    if (move.flags == 16) {move.importance += 16}
+    if (move.flags == 8) {move.importance += 20}
+    if (move.flags == 4) {move.importance += 12}
+    if (move.flags == 2) {move.importance += 8}
   }
 
   newGameMoves.sort( ( a, b ) => b.importance - a.importance );
@@ -71,11 +71,11 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
   var newGameMoves = game.ugly_moves();
 
   for ( let move of newGameMoves ) {
-    move.importance = 0
-      + move.flags = 16 ? 16 : 0
-      + move.flags = 8 ? 20 : 0
-      + move.flags = 4 ? 12 : 0
-      + move.flags = 2 ? 8 : 0;   
+    move.importance = 0;
+    if (move.flags == 16) {move.importance += 16}
+    if (move.flags == 8) {move.importance += 20}
+    if (move.flags == 4) {move.importance += 12}
+    if (move.flags == 2) {move.importance += 8}
   }
 
   newGameMoves.sort( ( a, b ) => b.importance - a.importance );
