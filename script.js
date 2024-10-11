@@ -37,10 +37,10 @@ var minimaxRoot = function(depth, game, isMaximisingPlayer) {
   //sortMoves(newGameMoves);
   for ( let move of newGameMoves ) {
     move.importance = 0
-      + move.flags.includes( 'p' ) ? 16 : 0
-      + move.flags.includes( 'e' ) ? 20 : 0
-      + move.flags.includes( 'b' ) ? 12 : 0
-      + move.flags.includes( 'c' ) ? 8 : 0;   
+      + move.flags = 16 ? 16 : 0
+      + move.flags = 8 ? 20 : 0
+      + move.flags = 4 ? 12 : 0
+      + move.flags = 2 ? 8 : 0;   
   }
 
   newGameMoves.sort( ( a, b ) => b.importance - a.importance );
@@ -72,10 +72,10 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
 
   for ( let move of newGameMoves ) {
     move.importance = 0
-      + move.flags.includes( 'p' ) ? 16 : 0
-      + move.flags.includes( 'e' ) ? 20 : 0
-      + move.flags.includes( 'b' ) ? 12 : 0
-      + move.flags.includes( 'c' ) ? 8 : 0;   
+      + move.flags = 16 ? 16 : 0
+      + move.flags = 8 ? 20 : 0
+      + move.flags = 4 ? 12 : 0
+      + move.flags = 2 ? 8 : 0;   
   }
 
   newGameMoves.sort( ( a, b ) => b.importance - a.importance );
