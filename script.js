@@ -1,6 +1,8 @@
 var board,
   game = new Chess();
 
+var fullMoves = 0;
+
 function clampNumber(num, a, b) {
   Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b));
 }
@@ -200,8 +202,19 @@ var kingEvalWhite = [
 
 var kingEvalBlack = reverseArray(kingEvalWhite);
 
+var kingEvalWhiteLate = [
 
+  [3.0, 4.0, 4.0, 5.0, 5.0, 4.0, 4.0, 3.0],
+  [3.0, 4.0, 4.0, 5.0, 5.0, 4.0, 4.0, 3.0],
+  [3.0, 4.0, 4.0, 5.0, 5.0, 4.0, 4.0, 3.0],
+  [3.0, 4.0, 4.0, 5.0, 5.0, 4.0, 4.0, 3.0],
+  [2.0, 3.0, 3.0, 4.0, 4.0, 3.0, 3.0, 2.0],
+  [1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.0],
+  [-2.0, -2.0, 0.0, 0.0, 0.0, -0.0, -2.0, -2.0],
+  [-2.0, -3.0, -1.0, 0.0, 0.0, -1.0, -3.0, -2.0]
+];
 
+var kingEvalBlackLate = reverseArray(kingEvalWhiteLate);
 
 var getPieceValue = function(piece, x, y) {
   if (piece === null) {
@@ -249,7 +262,11 @@ var getPieceValue = function(piece, x, y) {
     } else if (piece.type === 'q') {
       return 90 + evalQueen[y][x];
     } else if (piece.type === 'k') {
-      return 900 + (isWhite ? kingEvalWhite[y][x] : kingEvalBlack[y][x]);
+      if (fullMoves <= 26) {
+        return 900 + (isWhite ? kingEvalWhite[y][x] : kingEvalBlack[y][x]);
+      } else {
+        return 900 + (isWhite ? kingEvalWhiteLate[y][x] : kingEvalBlackLate[y][x]);
+      }
     }
     throw "Unknown piece type: " + piece.type;
   };
@@ -272,6 +289,7 @@ var makeBestMove = function() {
   var bestMove = getBestMove(game);
   game.ugly_move(bestMove);
   board.position(game.fen());
+  fullMoves += 1;
   renderMoveHistory(game.history());
   if (game.game_over()) {
     alert('Game over');
