@@ -70,6 +70,16 @@ var minimax = function(depth, game, alpha, beta, isMaximisingPlayer) {
   //var newGameMoves = game.ugly_moves({verbose: true});
   var newGameMoves = game.moves({verbose: true});
 
+  for ( let move of newGameMoves ) {
+    move.importance = 0
+      + move.flags.includes( 'p' ) ? 16 : 0
+      + move.flags.includes( 'e' ) ? 20 : 0
+      + move.flags.includes( 'b' ) ? 12 : 0
+      + move.flags.includes( 'c' ) ? 8 : 0;   
+  }
+
+  newGameMoves.sort( ( a, b ) => b.importance - a.importance );
+
   if (isMaximisingPlayer) {
     var bestMove = -9999;
     for (var i = 0; i < newGameMoves.length; i++) {
